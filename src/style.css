@@ -7,12 +7,15 @@
 }
 .dark .active {
   background-color: var(--color-dark-active);
-  color: var(--color-dark-primary);
+  color: var(--color-dark-text-primary);
 }
 .active-chat {
+  z-index: 4;
+  position: relative;
   background-color: var(--color-light-bg);
   color: var(--color-light-text-primary) !important;
 }
+
 .dark .active-chat {
   background-color: var(--color-dark-bg);
   color: var(--color-light-text-primary) !important;
@@ -23,6 +26,13 @@
     background-color: #fff;
   }
 }
+.theme-active .theme-toggle-circle::before {
+  transform: translateX(22px);
+  -webkit-transform: translateX(22px);
+  -moz-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  -o-transform: translateX(22px);
+}
 .dark .theme-active {
   background-color: var(--color-dark-primary);
   .theme-toggle-circle::before {
@@ -30,6 +40,26 @@
   }
 }
 
+/* animations */
+@keyframes fadeIn {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+
+/* fonts */
 @font-face {
   font-family: "VazirMatn";
   src: url(./assets/fonts/Vazirmatn-Thin.ttf);
@@ -103,13 +133,16 @@
   --color-dark-input-bg: #2a2a2a;
   --color-dark-input-border: #404040;
 
-  --color-dark-hover: #363636;
-  --color-dark-active: #404040;
+  --color-dark-hover: rgba(255, 255, 255, 0.05);
+  --color-dark-active: rgba(255, 255, 255, 0.09);
 
   --shadow-dark: 0 10px 40px rgba(0, 0, 0, 0.35);
 
   /* Fonts */
   --font-vazir: "Vazirmatn";
+
+  --animate-fadeIn: 600ms fadeIn ease;
+  --animate-fadeOut: 600ms fadeOut ease;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
