@@ -8,7 +8,6 @@ A modern AI chat application built with JavaScript, Vite and Tailwind CSS.
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-v4-06B6D4?logo=tailwindcss\&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-Build_Tool-646CFF?logo=vite\&logoColor=white)
 ![Font Awesome](https://img.shields.io/badge/Font_Awesome-528DD7?logo=fontawesome\&logoColor=white)
-![Ganjoor API](https://img.shields.io/badge/Ganjoor-API-7C3AED)
 
 ---
 
