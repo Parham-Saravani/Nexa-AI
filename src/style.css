@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* css classes */
+.active {
+  background-color: var(--color-light-active);
+  color: var(--color-light-primary);
+}
+.dark .active {
+  background-color: var(--color-dark-active);
+  color: var(--color-dark-primary);
+}
+.active-chat {
+  background-color: var(--color-light-bg);
+  color: var(--color-light-text-primary) !important;
+}
+.dark .active-chat {
+  background-color: var(--color-dark-bg);
+  color: var(--color-light-text-primary) !important;
+}
+.theme-active {
+  background-color: var(--color-light-primary);
+  .theme-toggle-circle::before {
+    background-color: #fff;
+  }
+}
+.dark .theme-active {
+  background-color: var(--color-dark-primary);
+  .theme-toggle-circle::before {
+    background-color: #fff;
+  }
+}
+
+@font-face {
+  font-family: "VazirMatn";
+  src: url(./assets/fonts/Vazirmatn-Thin.ttf);
+  font-weight: 200;
+}
+@font-face {
+  font-family: "VazirMatn";
+  src: url(./assets/fonts/Vazirmatn-Regular.ttf);
+  font-weight: 300;
+}
+@font-face {
+  font-family: "VazirMatn";
+  src: url(./assets/fonts/Vazirmatn-Medium.ttf);
+  font-weight: 600;
+}
+@font-face {
+  font-family: "VazirMatn";
+  src: url(./assets/fonts/Vazirmatn-Bold.ttf);
+  font-weight: 800;
+}
+
+@theme {
+  /* Gradient */
+  --color-gradient-first: #60a5fa;
+  --color-gradient-second: #4ade80;
+
+  /* Light Theme */
+  --color-light-bg: #f5f7fb;
+  --color-light-sidebar: #ffffff;
+  --color-light-card: #ffffff;
+
+  --color-light-text-primary: #1f2937;
+  --color-light-text-secondary: #6b7280;
+  --color-light-text-muted: #9ca3af;
+
+  --color-light-border: #e5e7eb;
+  --color-light-divider: #eef2f7;
+
+  --color-light-primary: #60a5fa;
+  --color-light-primary-hover: #3b82f6;
+
+  --color-light-user-message: #eef8ef;
+  --color-light-ai-message: #f8faff;
+
+  --color-light-input-bg: #ffffff;
+  --color-light-input-border: #e5e7eb;
+
+  --color-light-hover: #f3f6fb;
+  --color-light-active: #eef4ff;
+
+  --shadow-light: 0 10px 40px rgba(15, 23, 42, 0.06);
+
+  /* Dark Theme */
+  --color-dark-bg: #212121;
+  --color-dark-sidebar: #171717;
+  --color-dark-card: #2f2f2f;
+
+  --color-dark-text-primary: #ececec;
+  --color-dark-text-secondary: #b4b4b4;
+  --color-dark-text-muted: #7a7a7a;
+
+  --color-dark-border: #404040;
+  --color-dark-divider: #353535;
+
+  --color-dark-primary: #60a5fa;
+  --color-dark-primary-hover: #3b82f6;
+
+  --color-dark-user-message: #163025;
+  --color-dark-ai-message: #2f2f2f;
+
+  --color-dark-input-bg: #2a2a2a;
+  --color-dark-input-border: #404040;
+
+  --color-dark-hover: #363636;
+  --color-dark-active: #404040;
+
+  --shadow-dark: 0 10px 40px rgba(0, 0, 0, 0.35);
+
+  /* Fonts */
+  --font-vazir: "Vazirmatn";
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
