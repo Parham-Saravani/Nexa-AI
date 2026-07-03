@@ -29,9 +29,11 @@ const hideModalMenu = () => {
 
 const closeModelMenuOnUserClick = (event) => {
   const openModelMenu = event.target.closest(".current-model");
+  const modelMenu = event.target.closest(".model-menu");
   const modelMenuItem = event.target.closest(".model-menu-items");
+  
   if (modelMenuItem || modelMenu) return;
-  if (!isOpen && !openModelMenu) {
+  if (!openModelMenu) {
     hideModalMenu();
     isOpen = false;
   }
@@ -42,6 +44,7 @@ const changeModel = (event) => {
   removeActiveClassFromPreviousItem();
   changeCurrentModelText(event.target.dataset.model);
   event.target.classList.add("active");
+  saveCurrentModalInLocalStorage(event.target.dataset.model);
   hideModalMenu();
   isOpen = false;
 };
@@ -50,8 +53,8 @@ const changeCurrentModelText = (model) => {
   currentModel.insertAdjacentHTML(
     "beforeend",
     `
-        <i class="fa-solid fa-brain text-[18px] absolute top-3.5 left-2"></i>
-        <p class="ml-5">${model}</p>
+        <i class="fa-solid fa-brain text-[18px] absolute top-3.5 left-3"></i>
+        <p class="ml-10">${model}</p>
     `,
   );
 };
@@ -61,6 +64,9 @@ const removeActiveClassFromPreviousItem = () => {
       item.classList.remove("active");
     }
   });
+};
+const saveCurrentModalInLocalStorage = (model) => {
+  localStorage.setItem("model", model === "Fast" ? "fast" : "default");
 };
 currentModel.addEventListener("click", openModelMenu);
 document.addEventListener("click", closeModelMenuOnUserClick);

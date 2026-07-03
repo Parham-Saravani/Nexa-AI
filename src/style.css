@@ -15,7 +15,6 @@
   background-color: var(--color-light-bg);
   color: var(--color-light-text-primary) !important;
 }
-
 .dark .active-chat {
   background-color: var(--color-dark-bg);
   color: var(--color-light-text-primary) !important;
@@ -40,24 +39,39 @@
   }
 }
 
+.disabled-btn{
+  background-color: var(--color-light-input-border);
+  color: var(--color-light-text-muted);
+  cursor: default;
+}
+
+.dark .disabled-btn {
+  background-color: var(--color-dark-border);
+  color: var(--color-dark-text-muted);
+}
+.tips-active {
+  background-color: var(--color-light-primary);
+}
+.dark .tips-active {
+  background-color: var(--color-dark-primary);
+}
 /* animations */
 @keyframes fadeIn {
-  0%{
+  0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
 @keyframes fadeOut {
-  0%{
+  0% {
     opacity: 1;
   }
-  100%{
+  100% {
     opacity: 0;
   }
 }
-
 
 /* fonts */
 @font-face {
@@ -87,54 +101,54 @@
   --color-gradient-second: #4ade80;
 
   /* Light Theme */
-  --color-light-bg: #f5f7fb;
+  --color-light-bg: #f4f6f9;
   --color-light-sidebar: #ffffff;
   --color-light-card: #ffffff;
 
-  --color-light-text-primary: #1f2937;
+  --color-light-text-primary: #111827;
   --color-light-text-secondary: #6b7280;
   --color-light-text-muted: #9ca3af;
 
-  --color-light-border: #e5e7eb;
-  --color-light-divider: #eef2f7;
+  --color-light-border: #dbe3ee;
+  --color-light-divider: #edf2f7;
 
   --color-light-primary: #60a5fa;
   --color-light-primary-hover: #3b82f6;
 
-  --color-light-user-message: #eef8ef;
-  --color-light-ai-message: #f8faff;
+  --color-light-user-message: #ecfdf3;
+  --color-light-ai-message: #f8fafc;
 
-  --color-light-input-bg: #ffffff;
-  --color-light-input-border: #e5e7eb;
+  --color-light-input-bg: #f8fafc;
+  --color-light-input-border: #dbe3ee;
 
-  --color-light-hover: #f3f6fb;
-  --color-light-active: #eef4ff;
+  --color-light-hover: #f1f5f9;
+  --color-light-active: #e8f0fe;
 
   --shadow-light: 0 10px 40px rgba(15, 23, 42, 0.06);
 
   /* Dark Theme */
   --color-dark-bg: #212121;
   --color-dark-sidebar: #171717;
-  --color-dark-card: #2f2f2f;
+  --color-dark-card: #2a2a2a;
 
   --color-dark-text-primary: #ececec;
   --color-dark-text-secondary: #b4b4b4;
-  --color-dark-text-muted: #7a7a7a;
+  --color-dark-text-muted: #808080;
 
-  --color-dark-border: #404040;
-  --color-dark-divider: #353535;
+  --color-dark-border: #3d3d3d;
+  --color-dark-divider: #333333;
 
   --color-dark-primary: #60a5fa;
   --color-dark-primary-hover: #3b82f6;
 
-  --color-dark-user-message: #163025;
-  --color-dark-ai-message: #2f2f2f;
+  --color-dark-user-message: #183528;
+  --color-dark-ai-message: #2a2a2a;
 
-  --color-dark-input-bg: #2a2a2a;
+  --color-dark-input-bg: #242424;
   --color-dark-input-border: #404040;
 
-  --color-dark-hover: rgba(255, 255, 255, 0.05);
-  --color-dark-active: rgba(255, 255, 255, 0.09);
+  --color-dark-hover: rgba(255, 255, 255, 0.06);
+  --color-dark-active: rgba(255, 255, 255, 0.12);
 
   --shadow-dark: 0 10px 40px rgba(0, 0, 0, 0.35);
 
