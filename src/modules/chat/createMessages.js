@@ -20,27 +20,34 @@ const messageHandler = () => {
   showLoader();
   takeAiAnswer(newMessage);
   if (isChatStarted) {
-    const chatTitle = takeTitleFromUserInput(userText);
-    const newChat = new Chat(chatTitle);
-    currentChatId = newChat.id;
-    saveNewChatInIndexedDB(newChat);
-    takeChatsHistoryFromIndexedDB()
+    createAndSaveNewChatInIndexedDB(userText);
+    takeCurrentChatHistory(newMessage);
   } else {
-    
+    takeCurrentChatHistory(newMessage);
   }
 
   input.value = "";
   hideEmptyChatContent();
   makeBtnDisable();
 };
+const takeCurrentChatHistory = async (newMessage) => {
+  const tx = await createTransaction("chats", "readwrite");
+  const store = tx.objectStore("chats");
+  const currentChat = await takeCurrentChatFromIndexDB(store, newMessage);
+  addChatsToCurrentChat(currentChat, newMessage, store);
+};
+const createAndSaveNewChatInIndexedDB = (userText) => {
+  const chatTitle = takeTitleFromUserInput(userText);
+  const newChat = new Chat(chatTitle);
+  currentChatId = newChat.id;
+  saveNewChatInIndexedDB(newChat);
+  takeChatsHistoryFromIndexedDB();
+};
 const saveNewChatInIndexedDB = async (newChat) => {
   const transaction = await createTransaction("chats", "readwrite");
   const store = transaction.objectStore("chats");
   const request = store.add(newChat);
-  request.addEventListener("success", () => {
-    console.log("added");
-  });
-  console.log(store);
+  request.addEventListener("success", () => {});
 };
 const takeTitleFromUserInput = (userText) => {
   const chatTitle = userText.slice(0, 20);
@@ -48,9 +55,10 @@ const takeTitleFromUserInput = (userText) => {
 };
 const takeAiAnswer = async (newMessage) => {
   const response = await sendMessage(newMessage);
+  takeCurrentChatHistory(response);
   const isEnglish = processIfAiTextIsEnglish(response);
-  // hideLoader();
-  // createMessges(response, "ai", isEnglish);
+  hideLoader();
+  createMessges(response, "ai", isEnglish);
 };
 
 const processIfAiTextIsEnglish = (response) => {
@@ -150,7 +158,31 @@ const parseMarkDown = (response) => {
   const content = marked.parse(response);
   return content;
 };
+const takeCurrentChatFromIndexDB = (store) => {
+  return new Promise((resolve, reject) => {
+    const data = store.get(currentChatId);
+    data.addEventListener("error", (event) => {
+      reject(event.target.result);
+    });
+    data.addEventListener("success", (event) => {
+      resolve(event.target.result);
+    });
+  });
+};
+const addChatsToCurrentChat = (obj, newMessage, store) => {
+  const newChatToSave = obj;
+  newChatToSave.messages.push(newMessage);
+  console.log(newChatToSave);
+  store.put(newChatToSave);
+};
+
 input.addEventListener("input", inputHandler);
 sendBtn.addEventListener("click", messageHandler);
 
-export { hideEmptyChatContent, createMessges, takeAiAnswer, showLoader , formatDate};
+export {
+  hideEmptyChatContent,
+  createMessges,
+  takeAiAnswer,
+  showLoader,
+  formatDate,
+};
