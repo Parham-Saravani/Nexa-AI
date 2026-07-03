@@ -1,9 +1,11 @@
 import "./style.css";
 import applyTheme from "./modules/theme/theme";
+import "./modules/indexedDB/db";
 import "./modules/menu/menu";
 import "./modules/models/model";
 import "./modules/tips/tips";
 import "./modules/chat/emptyState";
-import "./modules/chat/createMessages"
-
+import "./modules/chat/createMessages";
+import takeChatsHistoryFromIndexedDB from "./modules/chat/chatHistory";
+takeChatsHistoryFromIndexedDB();
 applyTheme();

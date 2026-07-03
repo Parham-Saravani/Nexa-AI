@@ -1,5 +1,4 @@
-import Message from "./message";
-
+import Message from "../class/message"
 const baseUrl = "http://localhost:1060";
 
 const sendMessage = async (obj) => {

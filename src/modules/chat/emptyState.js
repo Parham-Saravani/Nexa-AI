@@ -4,8 +4,7 @@ import {
   takeAiAnswer,
   showLoader,
 } from "./createMessages";
-import Message from "./message";
-
+import Message from "../class/message";
 const popularQuestions = [
   {
     icon: "fa-solid fa-code",
