@@ -38,8 +38,7 @@
     background-color: #fff;
   }
 }
-
-.disabled-btn{
+.disabled-btn {
   background-color: var(--color-light-input-border);
   color: var(--color-light-text-muted);
   cursor: default;
@@ -54,6 +53,21 @@
 }
 .dark .tips-active {
   background-color: var(--color-dark-primary);
+}
+
+/* ai message custom styles */
+.ai-message h3 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.2rem;
+  direction: rtl;
+}
+.ai-message ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ai-message li {
+  direction: rtl;
 }
 /* animations */
 @keyframes fadeIn {
@@ -70,6 +84,47 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+.dark .messages-container{
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-dark-card) transparent;
+}
+.messages-container{
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-light-bg) transparent;
+}
+.messages-container::-webkit-scrollbar-thumb {
+  background: red;
+}
+.messages-container::-webkit-scrollbar-track {
+  background-color: red;
+}
+@keyframes loader {
+  0% {
+    box-shadow:
+      20px 0 var(--color-dark-primary),
+      -20px 0 color-mix(in srgb, var(--color-dark-primary) 40%, transparent);
+    background: var(--color-dark-primary);
+  }
+  33% {
+    box-shadow:
+      20px 0 var(--color-dark-primary),
+      -20px 0 color-mix(in srgb, var(--color-dark-primary) 40%, transparent);
+    background: color-mix(in srgb, var(--color-dark-primary) 60%, transparent);
+  }
+  66% {
+    box-shadow:
+      20px 0 color-mix(in srgb, var(--color-dark-primary) 40%, transparent),
+      -20px 0 var(--color-dark-primary);
+    background: color-mix(in srgb, var(--color-dark-primary) 40%, transparent);
+  }
+  100% {
+    box-shadow:
+      20px 0 color-mix(in srgb, var(--color-dark-primary) 40%, transparent),
+      -20px 0 var(--color-dark-primary);
+    background: color-mix(in srgb, var(--color-dark-primary) 10%, transparent);
   }
 }
 
@@ -157,6 +212,7 @@
 
   --animate-fadeIn: 600ms fadeIn ease;
   --animate-fadeOut: 600ms fadeOut ease;
+  --animate-loader: loader 1s infinite linear alternate;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

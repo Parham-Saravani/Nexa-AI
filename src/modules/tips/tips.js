@@ -68,6 +68,8 @@ const createBullets = () => {
 };
 const movetoTipWithBulletIndex = (event) => {
   const bullet = event.target.closest(".tips-bullet");
+  const activeBullet = event.target.closest(".tips-bullet.tips-active");
+  if (activeBullet) return;
   if (bullet) {
     currentIndex = +event.target.dataset.index;
     changeTipContent();

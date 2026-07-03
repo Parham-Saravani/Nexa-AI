@@ -1,3 +1,11 @@
+import {
+  hideEmptyChatContent,
+  createMessges,
+  takeAiAnswer,
+  showLoader,
+} from "./createMessages";
+import Message from "./message";
+
 const popularQuestions = [
   {
     icon: "fa-solid fa-code",
@@ -24,21 +32,43 @@ const popularQuestions = [
     question: "هوش مصنوعی در آینده چه شغل‌هایی را تغییر خواهد داد؟",
   },
 ];
-const questionContainer = document.querySelector('.short-questions')
+const questionContainer = document.querySelector(".short-questions");
+const emptyChat = document.querySelector(".empty-chat");
+
 const createQuestions = () => {
-    popularQuestions.forEach(question => {
-        questionContainer.insertAdjacentHTML('beforeend',
-        `
-        <div class="dark:bg-dark-input-bg w-105 border border-light-input-border dark:border-dark-input-border px-3 py-6 dark:text-dark-text-secondary text-light-text-secondary flex justify-between items-center rounded-2xl transition-transform duration-300 hover:scale-101 cursor-pointer">
+  popularQuestions.forEach((question, index) => {
+    questionContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div class="dark:bg-dark-input-bg max-sm:w-full w-105 border border-light-input-border dark:border-dark-input-border max-sm:py-3 px-3 py-6 dark:text-dark-text-secondary text-light-text-secondary flex justify-between items-center rounded-2xl transition-transform duration-300 hover:scale-101 popular-questions">
             <div class="flex w-[90%] items-center gap-3">
                 <i class="${question.icon}"></i>
-                <p class="text-[13px]">${question.question}</p>
+                <p class="text-[13px] popular-question-text cursor-pointer" data-index="${index}">${question.question}</p>
             </div>
-            <i class="fa-solid fa-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left cursor-pointer question-arrow-icon" data-index="${index}"></i>
         </div>
-        `
-        )
-    })
-}
+        `,
+    );
+  });
+};
 
-window.addEventListener('DOMContentLoaded', createQuestions)
+const popularQuestionsClickHandler = (event) => {
+  let content = null;
+  const question = event.target.closest(".popular-question-text");
+  const questionArrowIcon = event.target.closest(".question-arrow-icon");
+
+  if (!question && !questionArrowIcon) {
+    return;
+  } else if (question || questionArrowIcon) {
+    const index = event.target.dataset.index;
+    content = popularQuestions[index].question;
+    console.log(content);
+  }
+  hideEmptyChatContent();
+  const newMessage = new Message(content, "user");
+  createMessges(newMessage, "user");
+  showLoader();
+  takeAiAnswer(newMessage);
+};
+window.addEventListener("DOMContentLoaded", createQuestions);
+questionContainer.addEventListener("click", popularQuestionsClickHandler);
