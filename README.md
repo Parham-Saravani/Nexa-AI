@@ -6,6 +6,26 @@ Nexa AI provides a ChatGPT-like experience with persistent chat history, Markdow
 
 ---
 
+## 🛠️ Tech Stack
+
+![JavaScript](https://img.shields.io/badge/Vanilla-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![AI Chat](https://img.shields.io/badge/AI-Chat_App-10A37F?style=for-the-badge)
+![IndexedDB](https://img.shields.io/badge/Storage-IndexedDB-blue?style=for-the-badge)
+![Express](https://img.shields.io/badge/Backend-Express-black?style=for-the-badge&logo=express)
+
+---
+## 🖼️ Preview
+
+### Chat Interface
+
+(Add screenshot here)
+
+### Mobile View
+
+(Add screenshot here)
+
+---
+
 ## ✨ Features
 
 * 🤖 AI-powered conversations
@@ -19,20 +39,6 @@ Nexa AI provides a ChatGPT-like experience with persistent chat history, Markdow
 * 🎨 Modern chat interface
 
 ---
-
-## 🖼️ Preview
-
-### Chat Interface
-
-(Add screenshot here)
-
-### Mobile View
-
-(Add screenshot here)
-
----
-
-## 🛠️ Tech Stack
 
 ### Frontend
 
@@ -50,25 +56,6 @@ Nexa AI provides a ChatGPT-like experience with persistent chat history, Markdow
 ### Storage
 
 * IndexedDB
-
----
-
-## 📂 Project Structure
-
-```text
-Nexa-AI/
-├── src/
-│   ├── components/
-│   ├── services/
-│   ├── indexedDB/
-│   ├── handlers/
-│   ├── assets/
-│   └── utils/
-│
-├── server.js
-├── package.json
-└── README.md
-```
 
 ---
 
@@ -106,16 +93,6 @@ npm run dev
 
 ---
 
-## ⚙️ Environment Variables
-
-Create a `.env` file:
-
-```env
-API_KEY=YOUR_API_KEY
-```
-
----
-
 ## 📌 Main Challenges
 
 During development, several core frontend concepts were implemented:
@@ -137,12 +114,3 @@ During development, several core frontend concepts were implemented:
 * User authentication
 * Cloud synchronization
 * Multiple AI model support
-
----
-
-## 👨‍💻 Author
-
-Parham Saravani
-
-GitHub:
-https://github.com/Parham-Saravani
