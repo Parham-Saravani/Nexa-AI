@@ -74,7 +74,7 @@ const createMessges = (response, role, isEnglish = false , typeEffect = false) =
     messagesContainer.insertAdjacentHTML(
       "beforeend",
       `
-    <div class="animate-fadeIn flex flex-col gap-3 dark:text-dark-text-primary text-light-text-primary max-sm:w-full w-fit max-w-[50%] dark:text-shadow-light-text-primary text-shadow-light-text-primary dark:bg-dark-user-message bg-light-user-message rounded-2xl px-5 pt-5 pb-2 user-message">
+    <div class="animate-fadeIn flex flex-col gap-3 dark:text-dark-text-primary text-light-text-primary max-sm:max-w-[90%] w-fit max-w-[50%] dark:text-shadow-light-text-primary text-shadow-light-text-primary dark:bg-dark-user-message bg-light-user-message rounded-2xl px-5 pt-5 pb-2 user-message">
         <p class="break-all whitespace-pre-wrap">${response.content}</p>
         <div class="w-full flex text-xs">
             <i class="fa-solid fa-check-double bgred"></i>
@@ -89,11 +89,11 @@ const createMessges = (response, role, isEnglish = false , typeEffect = false) =
       "beforeend",
       `
         <div class="animate-fadeIn relative dark:text-dark-text-primary text-light-text-primary [direction:ltr] flex gap-2 items-center  ai-message">
-            <span class="flex items-center justify-center absolute top-1 left-3 dark:bg-dark-bg bg-light-bg shadow-lg px-1 py-1 rounded-2xl">
+            <span class="max-sm:hidden flex items-center justify-center absolute top-1 left-3 dark:bg-dark-bg bg-light-bg shadow-lg px-1 py-1 rounded-2xl">
                 <img class="size-11" src="./src/assets/images/sidebar-logo.png" alt="">
             </span>
-            <div class="[direction:ltr] ml-20 dark:bg-dark-ai-message max-sm:w-full max-w-[70%] w-fit text-right bg-light-ai-message rounded-2xl px-5 pt-5 pb-2">
-                <div class="ai-message-text ${processIfAiTextIsEnglish(response) ? "text-left" : "text-right"}">
+            <div class="[direction:ltr] max-sm:ml-0 ml-20 dark:bg-dark-ai-message max-sm:max-w-[95%] max-w-[70%] w-fit text-right bg-light-ai-message rounded-2xl px-5 pt-5 pb-2">
+                <div class="ai-message-text ${processIfAiTextIsEnglish(response) ? "text-right" : "text-right"}">
                     ${typeEffect ? '' : pareMarkDown(response.content)}
                 </div>
                 <div class="mt-5 text-xs">

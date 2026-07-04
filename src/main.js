@@ -1,4 +1,5 @@
 import "./style.css";
+import './modules/loader/loader'
 import applyTheme from "./modules/theme/theme";
 import "./modules/indexedDB/db";
 import "./modules/menu/menu";
