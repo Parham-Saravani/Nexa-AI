@@ -8,10 +8,15 @@ Nexa AI provides a ChatGPT-like experience with persistent chat history, Markdow
 
 ## 🛠️ Tech Stack
 
-![JavaScript](https://img.shields.io/badge/Vanilla-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![AI Chat](https://img.shields.io/badge/AI-Chat_App-10A37F?style=for-the-badge)
-![IndexedDB](https://img.shields.io/badge/Storage-IndexedDB-blue?style=for-the-badge)
-![Express](https://img.shields.io/badge/Backend-Express-black?style=for-the-badge&logo=express)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-v4-06B6D4?logo=tailwindcss&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-Build_Tool-646CFF?logo=vite&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-Backend-000000?logo=express&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-Runtime-5FA04E?logo=node.js&logoColor=white)
+![IndexedDB](https://img.shields.io/badge/IndexedDB-Local_Database-003B57?logo=googlechrome&logoColor=white)
+![Marked.js](https://img.shields.io/badge/Marked.js-Markdown_Parser-000000?logo=markdown&logoColor=white)
+![AI API](https://img.shields.io/badge/AI-API_Integration-10A37F)
+![Font Awesome](https://img.shields.io/badge/Font_Awesome-528DD7?logo=fontawesome&logoColor=white)
 
 ---
 ## 🖼️ Preview
@@ -37,25 +42,6 @@ Nexa AI provides a ChatGPT-like experience with persistent chat history, Markdow
 * 🔄 Real-time message streaming effect
 * 📂 Conversation management
 * 🎨 Modern chat interface
-
----
-
-### Frontend
-
-* HTML5
-* CSS3
-* Tailwind CSS v4
-* Vanilla JavaScript (ES6 Modules)
-* Marked.js
-
-### Backend
-
-* Node.js
-* Express.js
-
-### Storage
-
-* IndexedDB
 
 ---
 
