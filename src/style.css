@@ -19,9 +19,28 @@
   background-color: var(--color-dark-bg);
   color: var(--color-dark-text-primary) !important;
 }
+
 .theme-active {
   background-color: var(--color-light-primary);
   .theme-toggle-circle::before {
+    background-color: #fff;
+  }
+}
+.dark .theme-active {
+  background-color: var(--color-dark-primary);
+  .theme-toggle-circle::before {
+    background-color: #fff;
+  }
+}
+.mobile-theme-active{
+  background-color: var(--color-light-primary);
+  .mobile-theme-toggle-circle::before {
+    background-color: #fff;
+  }
+}
+.dark .mobile-theme-active {
+  background-color: var(--color-dark-primary);
+  .mobile-theme-toggle-circle::before {
     background-color: #fff;
   }
 }
@@ -32,12 +51,17 @@
   -ms-transform: translateX(22px);
   -o-transform: translateX(22px);
 }
-.dark .theme-active {
-  background-color: var(--color-dark-primary);
-  .theme-toggle-circle::before {
-    background-color: #fff;
-  }
+.mobile-theme-active .mobile-theme-toggle-circle::before {
+  transform: translateX(14px);
+  -webkit-transform: translateX(14px);
+  -moz-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  -o-transform: translateX(14px);
 }
+
+
+
+
 .disabled-btn {
   background-color: var(--color-light-input-border);
   color: var(--color-light-text-muted);
@@ -77,22 +101,27 @@
 }
 
 .dark .messages-container {
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: var(--color-dark-card) transparent;
 }
 .messages-container {
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: var(--color-light-bg) transparent;
 }
 
 .dark .recent-chats-data {
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: var(--color-dark-card) transparent;
 }
 .recent-chats-data {
-    scrollbar-width: thin;
+    scrollbar-width: none;
   scrollbar-color: var(--color-light-bg) transparent;
 }
+
+.mobile-menu.hide{
+  left: -400px;
+}
+
 /* animations */
 @keyframes fadeIn {
   0% {

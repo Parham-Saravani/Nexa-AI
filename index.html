@@ -12,13 +12,74 @@
   </head>
   <body class="dark:bg-dark-bg bg-light-bg h-screen font-vazir">
     <div class="max-sm:px-0 max-sm:py-0 h-full flex gap-2 px-4 py-3">
-      <div class="w-full h-full flex justify-center items-center dark:bg-dark-bg bg-light-bg fixed top-0 z-50 page-loader">
-          <div class="flex flex-col items-center justify-center w-50 h-30 gap-5 dark:bg-dark-card bg-light-card dark:shadow-dark shadow-light  rounded-2xl">
-              <p class="dark:text-dark-text-primary">لطفا منتظر بمانید...</p>
-              <div class="animate-loader aspect-square rounded-full w-4">
+      <div
+        class="w-full h-full flex justify-center items-center dark:bg-dark-bg bg-light-bg fixed top-0 z-50 page-loader"
+      >
+        <div
+          class="flex flex-col items-center justify-center w-50 h-30 gap-5 dark:bg-dark-card bg-light-card dark:shadow-dark shadow-light rounded-2xl"
+        >
+          <p class="dark:text-dark-text-primary">لطفا منتظر بمانید...</p>
+          <div class="animate-loader aspect-square rounded-full w-4"></div>
+        </div>
+      </div>
 
-              </div>
+      <!-- mobile menu btn -->
+        <header class="hidden max-sm:flex [direction:ltr] left-3 z-30 top-4 fixed w-full h-10 mobile-header">
+            <button class="cursor-pointer flex justify-center items-center dark:bg-dark-card dark:border-dark-border bg-light-card shadow-light border border-light-border dark:text-dark-text-primary text-light-text-primary w-10 h-10 rounded-full  mobile-menu-opener">
+                <i class="fa-solid fa-bars-staggered text-xl"></i>              
+            </button>
+        </header>
+
+
+        <!-- mobile menu -->
+      <div class="fixed left-0 z-40 h-full dark:bg-dark-bg bg-light-bg transition-normal duration-300 rounded-tr-2xl rounded-br-2xl mobile-menu">
+    
+
+        <div class="relative h-full w-70 z-40">
+          <!-- header -->
+        <header class="[direction:ltr] flex justify-between items-center pt-4 px-3">
+          <div class="relative flex items-center">
+            <img src="./src/assets/images/sidebar-logo.png" class="size-10 absolute -top-2.5" alt="">
+            <p class="ml-12 font-bold text-xl dark:text-dark-text-primary text-light-text-primary">NexaAI</p>
           </div>
+          <button class="cursor-pointer w-10 h-10 dark:text-dark-text-primary text-light-text-primary close-mobile-menu">
+              <i class="fa-solid fa-xmark text-xl"></i>
+          </button>
+        </header>
+
+        <!-- divider -->
+        <div class="mt-1 w-full h-0.5 dark:bg-dark-divider bg-light-divider"></div>
+        <!-- new chat btn-->
+        <div class="px-3">
+          <button class="mt-5 flex justify-center items-center gap-1 text-[13px] text-white font-bold w-full py-3 rounded-2xl bg-linear-90 from-gradient-first to-gradient-second cursor-pointer transition-transform duration-300 hover:-translate-y-0.5 new-chat">
+            <i class="fa-solid fa-plus"></i>
+            <p>گفتوگو جدید</p>
+          </button>
+        </div>
+
+       <!-- chat history -->
+         <div class="mt-8 h-[55%] px-3">
+          <div class="flex items-center justify-between px-3 dark:text-dark-text-secondary text-light-text-secondary">
+            <h2 class="font-bold text-[13px]">تاریخچه گفتگوها</h2>
+          </div>
+          <div class="mt-1 flex gap-2 flex-col overflow-y-auto h-full overflow-x-visible recent-chats-data">
+
+          </div>
+        </div>
+
+        <!-- bottom content (setting & theme)-->
+         <div class="absolute bottom-8 left-0 right-0 px-5 flex mt-8 justify-between items-center rounded-2xl [direction:ltr]">
+            <div class="relative dark:text-dark-text-primary text-light-text-primary flex gap-2">
+              <i class="fa-solid fa-moon text-2xl max-sm:-top- -top-0.5 absolute max-sm:text-[20px]"></i>
+              <p class="font-medium ml-8 max-sm:ml-6 max-sm:text-[13px]">Dark Mode</p>
+            </div>
+            <label class="cursor-pointer rounded-full max-sm:w-8 max-sm:h-4 w-13 h-7 dark:bg-dark-card bg-light-card transition-colors from-blue-300 mobile-theme-toggle">
+              <input class="hidden mobile-menu-theme-checkbox" type="checkbox" />
+              <div class="relative w-full h-full rounded-full before:absolute before:h-3 before:w-3 before:rounded-full before:top-0 before:bottom-0 before:my-auto before:translate-x-0.5 dark:before:bg-white before:bg-light-primary before:transition-transform before:duration-300 mobile-theme-toggle-circle"></div>
+            </label>
+          </div>
+
+        </div>
       </div>
       <!-- sidebar -->
       <div
@@ -82,9 +143,9 @@
               <i class="fa-solid fa-magnifying-glass text-[18px]"></i>
             </button>
           </div>
-          <div class="mt-4 flex gap-2 flex-col h-78 overflow-y-auto overflow-x-visible recent-chats-data">
-
-          </div>
+          <div
+            class="mt-4 flex gap-2 flex-col h-78 overflow-y-auto overflow-x-visible recent-chats-data"
+          ></div>
         </div>
         <!-- user data and dark mode-->
         <div class="absolute bottom-5 right-0 w-full px-6">
@@ -133,55 +194,45 @@
       </div>
 
       <!-- messages -->
-      <div
-        class="w-[80%] max-xl:w-[65%] max-lg:w-full flex px-4 py-6 h-full dark:bg-dark-sidebar bg-light-sidebar rounded-3xl shadow-md"
-      >
-        <div
-          class="max-sm:px-0 max-xl:w-full relative max-sm:w-full pl-7 w-[80%] h-full rounded-tr-2xl rounded-br-2xl"
-        >
+      <div class="w-[80%] max-xl:w-[65%] max-lg:w-full flex px-4 py-6 h-full dark:bg-dark-sidebar bg-light-sidebar rounded-2xl max-sm:rounded-none shadow-md">
+        
+        <div class="max-sm:px-1 max-xl:w-full relative max-sm:w-full pl-7 w-[80%] h-full rounded-tr-2xl rounded-br-2xl">
           <main class="h-full w-full mx-auto">
-            <div
-              class="flex w-full h-full flex-col justify-center items-center empty-chat"
-            >
+            <div class="max-sm:justify-start max-sm:pt-20 flex w-full h-full flex-col justify-center items-center empty-chat">
               <div>
-                <p
-                  class="text-xl font-bold text-center dark:text-dark-text-primary text-light-text-primary"
-                >
+                <p class="text-xl font-bold text-center dark:text-dark-text-primary text-light-text-primary">
                   سلام 👋<br />چطور میتونم کمکت کنم؟
                 </p>
                 <div class="mt-10 flex flex-col gap-5">
-                  <h3
-                    class="text-center dark:text-dark-text-primary text-light-text-primary"
-                  >
+                  <h3 class="text-center dark:text-dark-text-primary text-light-text-primary">
                     <i class="fa-solid fa-sparkles"></i>
                     سوالات پرطرفدار
                   </h3>
-                  <div
-                    class="flex w-full max-sm:px-0 max-2xl:px-0 max-2xl:bg-red-400 px-35 flex-wrap gap-2 short-questions"
-                  ></div>
+                  <div class="flex w-full max-sm:px-0 max-2xl:px-0 px-35 flex-wrap gap-2 short-questions"></div>
                 </div>
               </div>
             </div>
 
-            <div class="hidden flex-col gap-2 pt-10 pb-30 w-full h-full overflow-auto messages-container">
+            <div class="max-sm:pt-10 hidden flex-col gap-2 pt-10 pb-25 w-full h-full overflow-auto messages-container">
 
             </div>
           </main>
 
           <footer class="max-sm:border-0 z-30 absolute mx-auto -bottom-3 w-full">
-            <div class="flex max-xl:bg-red-500 max-sm:px-0 justify-center flex-col gap-2 mx-auto dark:bg-dark-sidebar bg-light-sidebar max-sm:w-full w-240 px-10">
+            <div class="flex max-sm:px-0 justify-center flex-col gap-2 mx-auto dark:bg-dark-sidebar bg-light-sidebar max-sm:w-full w-240 px-10">
               <div class="flex items-center justify-between w-full h-15 mx-auto dark:bg-dark-input-bg bg-light-input-bg rounded-2xl px-2 border border-light-input-border dark:border-dark-input-border">
-              <textarea
-                class="resize-none dark:text-dark-text-primary text-light-text-primary w-[90%] h-full px-2.5 py-4 outline-hidden user-message-input" placeholder="سوال بپرسید ..."></textarea>
+                <textarea
+                  class="resize-none dark:text-dark-text-primary text-light-text-primary w-[90%] h-full px-2.5 py-4 outline-hidden user-message-input" placeholder="سوال بپرسید ..."></textarea>
 
-              <button class="cursor-pointer flex justify-center items-center size-10 rounded-full dark:bg-dark-primary dark:hover:bg-dark-primary-hover hover:bg-light-primary-hover bg-light-primary text-white disabled-btn send-Btn transition-colors duration-300" disabled>
-                <i class="fa-solid fa-arrow-up text-xl"></i>
-              </button>
-            </div>
-            <p class="dark:text-dark-text-secondary text-dark-text-secondary max-sm:text-[10px] text-xs text-center">
-              مدل‌های هوش‌مصنوعی می‌توانند اشتباه کنند، صحت اطلاعات مهم را بررسی
-              کنید و از وارد کردن اطلاعات حساس بپرهیزید.
-            </p>
+                <button
+                  class="cursor-pointer flex justify-center items-center size-10 rounded-full dark:bg-dark-primary dark:hover:bg-dark-primary-hover hover:bg-light-primary-hover bg-light-primary text-white disabled-btn send-Btn transition-colors duration-300" disabled>
+                  <i class="fa-solid fa-arrow-up text-xl"></i>
+                </button>
+              </div>
+              <p class="dark:text-dark-text-secondary text-dark-text-secondary max-sm:text-[10px] text-xs text-center">
+                مدل‌های هوش‌مصنوعی می‌توانند اشتباه کنند، صحت اطلاعات مهم را
+                بررسی کنید و از وارد کردن اطلاعات حساس بپرهیزید.
+              </p>
             </div>
           </footer>
         </div>
