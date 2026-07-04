@@ -55,6 +55,8 @@ const takeTitleFromUserInput = (userText) => {
   return `${chatTitle}...`;
 };
 const takeAiAnswer = async (newMessage) => {
+  console.log(newMessage);
+  
   const response = await sendMessage(newMessage);
   chatHistoryHandler(response);
   const isEnglish = processIfAiTextIsEnglish(response);
@@ -90,7 +92,7 @@ const createMessges = (response, role, isEnglish = false , typeEffect = false) =
             <span class="flex items-center justify-center absolute top-1 left-3 dark:bg-dark-bg bg-light-bg shadow-lg px-1 py-1 rounded-2xl">
                 <img class="size-11" src="./src/assets/images/sidebar-logo.png" alt="">
             </span>
-            <div class="[direction:ltr] ml-20 dark:bg-dark-ai-message max-sm:w-full w-1/2 text-right bg-light-ai-message rounded-2xl px-5 pt-5 pb-2">
+            <div class="[direction:ltr] ml-20 dark:bg-dark-ai-message max-sm:w-full max-w-[70%] w-fit text-right bg-light-ai-message rounded-2xl px-5 pt-5 pb-2">
                 <div class="ai-message-text ${processIfAiTextIsEnglish(response) ? "text-left" : "text-right"}">
                     ${typeEffect ? '' : pareMarkDown(response.content)}
                 </div>

@@ -1,7 +1,9 @@
 import Message from "../class/message";
 const baseUrl = "http://localhost:1060";
 
-const sendMessage = async (obj) => {  
+const sendMessage = async (obj) => {
+  console.log(obj);
+
   const response = await fetch(`${baseUrl}/api/chat`, {
     method: "POST",
     headers: {

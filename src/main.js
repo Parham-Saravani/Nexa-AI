@@ -6,6 +6,8 @@ import "./modules/models/model";
 import "./modules/tips/tips";
 import "./modules/chat/emptyState";
 import "./modules/chat/createMessages";
+import "./modules/chat/createNewChat"
 import takeChatsHistoryFromIndexedDB from "./modules/chat/chatHistory";
+
 takeChatsHistoryFromIndexedDB();
 applyTheme();

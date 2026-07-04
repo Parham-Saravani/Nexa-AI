@@ -71,11 +71,22 @@ const saveCurrentModalInLocalStorage = (model) => {
 
 const syncModelBasedOnLocalStorage = () => {
   const localStorageModel = localStorage.getItem("model");
+
   if (localStorageModel) {
-    const model = localStorageModel[0].toUpperCase() + localStorageModel.slice(1);
+    const model =
+      localStorageModel[0].toUpperCase() + localStorageModel.slice(1);
     changeCurrentModelText(model);
     removeActiveClassFromPreviousItem();
     document.querySelector(`[data-model=${model}]`).classList.add("active");
+  }
+};
+
+const setModel = () => {
+  const localStorageModel = localStorage.getItem("model");
+  if (localStorageModel) {
+    return localStorageModel;
+  } else {
+    return "default";
   }
 };
 
@@ -85,3 +96,5 @@ document.addEventListener("click", closeModelMenuOnUserClick);
 modelMenuItems.forEach((item) => {
   item.addEventListener("click", changeModel);
 });
+
+export default setModel;

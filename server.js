@@ -15,6 +15,8 @@ app.post("/api/chat", async (req, res) => {
 });
 
 const fetchData = async (content, model) => {
+  console.log(model);
+  
   const response = await fetch(baseUrl, {
     method: "POST",
     headers: {
