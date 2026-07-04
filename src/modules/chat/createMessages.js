@@ -2,8 +2,9 @@ import { createTransaction } from "../indexedDB/db";
 import Message from "../class/message";
 import Chat from "../class/chat";
 import sendMessage from "./response";
-import { marked } from "marked";
 import takeChatsHistoryFromIndexedDB from "./chatHistory";
+import renderAiMessage from "./renderAiMessage";
+import { marked } from "marked";
 
 const sendBtn = document.querySelector(".send-Btn");
 const input = document.querySelector(".user-message-input");
@@ -21,19 +22,19 @@ const messageHandler = () => {
   takeAiAnswer(newMessage);
   if (isChatStarted) {
     createAndSaveNewChatInIndexedDB(userText);
-    takeCurrentChatHistory(newMessage);
+    chatHistoryHandler(newMessage);
   } else {
-    takeCurrentChatHistory(newMessage);
+    chatHistoryHandler(newMessage);
   }
 
   input.value = "";
   hideEmptyChatContent();
   makeBtnDisable();
 };
-const takeCurrentChatHistory = async (newMessage) => {
+const chatHistoryHandler = async (newMessage) => {
   const tx = await createTransaction("chats", "readwrite");
   const store = tx.objectStore("chats");
-  const currentChat = await takeCurrentChatFromIndexDB(store, newMessage);
+  const currentChat = await takeCurrentChatFromIndexDB(store, currentChatId);
   addChatsToCurrentChat(currentChat, newMessage, store);
 };
 const createAndSaveNewChatInIndexedDB = (userText) => {
@@ -55,50 +56,54 @@ const takeTitleFromUserInput = (userText) => {
 };
 const takeAiAnswer = async (newMessage) => {
   const response = await sendMessage(newMessage);
-  takeCurrentChatHistory(response);
+  chatHistoryHandler(response);
   const isEnglish = processIfAiTextIsEnglish(response);
   hideLoader();
-  createMessges(response, "ai", isEnglish);
+  createMessges(response, "ai", isEnglish , true);
 };
 
 const processIfAiTextIsEnglish = (response) => {
-  const englishRegEx = /[a-zA-Z]/g;
+  const englishRegEx = /[a-zA-Z]/;
   const isEnglish = englishRegEx.test(response.content);
   return isEnglish;
 };
-const createMessges = (response, role, isEnglish = false) => {
+const createMessges = (response, role, isEnglish = false , typeEffect = false) => {
   if (role === "user") {
     messagesContainer.insertAdjacentHTML(
       "beforeend",
       `
-    <div class="flex flex-col gap-3 dark:text-dark-text-primary text-light-text-primary max-sm:w-full w-1/2 dark:text-shadow-light-text-primary text-shadow-light-text-primary dark:bg-dark-user-message bg-light-user-message rounded-2xl px-5 pt-5 pb-2 user-message">
+    <div class="animate-fadeIn flex flex-col gap-3 dark:text-dark-text-primary text-light-text-primary max-sm:w-full w-fit max-w-[50%] dark:text-shadow-light-text-primary text-shadow-light-text-primary dark:bg-dark-user-message bg-light-user-message rounded-2xl px-5 pt-5 pb-2 user-message">
         <p class="break-all whitespace-pre-wrap">${response.content}</p>
-        <div class="w-full flex gap-1">
-          <i class="fa-solid fa-check-double"></i>
-          <p class="[direction:ltr] w-24 flex justify-center items-center">${formatDate(response.createdAt)}</p>
+        <div class="w-full flex text-xs">
+            <i class="fa-solid fa-check-double bgred"></i>
+            <p class="[direction:ltr] w-19 flex justify-center items-center">${formatDate(response.createdAt)}</p>
         </div>
     </div>
     `,
     );
   } else {
+    // ${processIfAiTextIsEnglish(response) ? "english-ai-message" : ""}
     messagesContainer.insertAdjacentHTML(
       "beforeend",
       `
-        <div class="relative dark:text-dark-text-primary text-light-text-primary [direction:${isEnglish ? "ltr" : "rtl"}] flex gap-2 items-center ai-message">
+        <div class="animate-fadeIn relative dark:text-dark-text-primary text-light-text-primary [direction:ltr] flex gap-2 items-center  ai-message">
             <span class="flex items-center justify-center absolute top-1 left-3 dark:bg-dark-bg bg-light-bg shadow-lg px-1 py-1 rounded-2xl">
                 <img class="size-11" src="./src/assets/images/sidebar-logo.png" alt="">
             </span>
             <div class="[direction:ltr] ml-20 dark:bg-dark-ai-message max-sm:w-full w-1/2 text-right bg-light-ai-message rounded-2xl px-5 pt-5 pb-2">
-                <div>
-                    ${parseMarkDown(response.content)}
+                <div class="ai-message-text ${processIfAiTextIsEnglish(response) ? "text-left" : "text-right"}">
+                    ${typeEffect ? '' : pareMarkDown(response.content)}
                 </div>
-                <div class="mt-5">
-                    <p class="w-24 flex justify-center items-center">${formatDate(response.createdAt)}</p>
+                <div class="mt-5 text-xs">
+                    <p class="w-13 flex justify-center items-center">${formatDate(response.createdAt)}</p>
                 </div
             </div>
         </div>
     `,
     );
+    if(typeEffect){
+      renderAiMessage(response.content);
+    }
   }
 };
 const formatDate = (time) => {
@@ -108,7 +113,6 @@ const formatDate = (time) => {
     hour12: true,
     minute: "2-digit",
   });
-
   return persianTime;
 };
 const makeBtnDisable = () => {
@@ -154,13 +158,9 @@ const showLoader = () => {
 const hideLoader = () => {
   document.querySelector(".ai-message-loader").remove();
 };
-const parseMarkDown = (response) => {
-  const content = marked.parse(response);
-  return content;
-};
-const takeCurrentChatFromIndexDB = (store) => {
+const takeCurrentChatFromIndexDB = (store, ID) => {
   return new Promise((resolve, reject) => {
-    const data = store.get(currentChatId);
+    const data = store.get(ID);
     data.addEventListener("error", (event) => {
       reject(event.target.result);
     });
@@ -172,17 +172,22 @@ const takeCurrentChatFromIndexDB = (store) => {
 const addChatsToCurrentChat = (obj, newMessage, store) => {
   const newChatToSave = obj;
   newChatToSave.messages.push(newMessage);
-  console.log(newChatToSave);
   store.put(newChatToSave);
 };
-
+const pareMarkDown = (content) => {
+  return marked.parse(content)
+  
+}
 input.addEventListener("input", inputHandler);
 sendBtn.addEventListener("click", messageHandler);
 
 export {
+  createAndSaveNewChatInIndexedDB,
+  chatHistoryHandler,
   hideEmptyChatContent,
   createMessges,
   takeAiAnswer,
   showLoader,
   formatDate,
+  takeCurrentChatFromIndexDB,
 };

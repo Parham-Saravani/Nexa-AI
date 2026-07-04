@@ -1,30 +1,26 @@
 const toggleInput = document.querySelector(".theme-checkbox");
 const themeSwith = document.querySelector(".theme-toggle");
 
-let isDarkMode = false;
 const applyTheme = () => {
   const themeStatus = JSON.parse(localStorage.getItem("isDarkMode")) || false;
   if (themeStatus) {
     themeSwith.classList.add("theme-active");
     darkTheme();
-    isDarkMode = true;
+    toggleInput.checked = true;
   } else {
+    toggleInput.checked = false;
     lightTheme;
-    isDarkMode = false;
   }
 };
 const changeTheme = (event) => {
-  if (!isDarkMode) {
+  if (toggleInput.checked) {
     darkTheme();
-    isDarkMode = true;
     themeSwith.classList.add("theme-active");
   } else {
     lightTheme();
-    isDarkMode = false;
     themeSwith.classList.remove("theme-active");
   }
 };
-toggleInput.addEventListener("click", changeTheme);
 const darkTheme = () => {
   document.documentElement.classList.add("dark");
   saveThemeInLocalStorage("true");
@@ -37,4 +33,7 @@ const lightTheme = () => {
 const saveThemeInLocalStorage = (theme) => {
   localStorage.setItem("isDarkMode", theme);
 };
+
+toggleInput.addEventListener("click", changeTheme);
+
 export default applyTheme;

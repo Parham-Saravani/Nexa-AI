@@ -17,7 +17,7 @@
 }
 .dark .active-chat {
   background-color: var(--color-dark-bg);
-  color: var(--color-light-text-primary) !important;
+  color: var(--color-dark-text-primary) !important;
 }
 .theme-active {
   background-color: var(--color-light-primary);
@@ -69,6 +69,30 @@
 .ai-message li {
   direction: rtl;
 }
+.english-ai-message h3 {
+  direction: ltr;
+}
+.english-ai-message li {
+  direction: ltr;
+}
+
+.dark .messages-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-dark-card) transparent;
+}
+.messages-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-light-bg) transparent;
+}
+
+.dark .recent-chats-data {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-dark-card) transparent;
+}
+.recent-chats-data {
+    scrollbar-width: thin;
+  scrollbar-color: var(--color-light-bg) transparent;
+}
 /* animations */
 @keyframes fadeIn {
   0% {
@@ -87,20 +111,6 @@
   }
 }
 
-.dark .messages-container{
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-dark-card) transparent;
-}
-.messages-container{
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-light-bg) transparent;
-}
-.messages-container::-webkit-scrollbar-thumb {
-  background: red;
-}
-.messages-container::-webkit-scrollbar-track {
-  background-color: red;
-}
 @keyframes loader {
   0% {
     box-shadow:

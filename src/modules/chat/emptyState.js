@@ -1,10 +1,14 @@
 import {
+  createAndSaveNewChatInIndexedDB,
   hideEmptyChatContent,
   createMessges,
   takeAiAnswer,
   showLoader,
+  chatHistoryHandler,
 } from "./createMessages";
 import Message from "../class/message";
+const emptyChatContent = document.querySelector(".empty-chat");
+
 const popularQuestions = [
   {
     icon: "fa-solid fa-code",
@@ -33,6 +37,7 @@ const popularQuestions = [
 ];
 const questionContainer = document.querySelector(".short-questions");
 const emptyChat = document.querySelector(".empty-chat");
+const input = document.querySelector(".user-message-input");
 
 const createQuestions = () => {
   popularQuestions.forEach((question, index) => {
@@ -52,6 +57,7 @@ const createQuestions = () => {
 };
 
 const popularQuestionsClickHandler = (event) => {
+  const isChatStarted = emptyChatContent.classList.contains("flex");
   let content = null;
   const question = event.target.closest(".popular-question-text");
   const questionArrowIcon = event.target.closest(".question-arrow-icon");
@@ -59,14 +65,18 @@ const popularQuestionsClickHandler = (event) => {
   if (!question && !questionArrowIcon) {
     return;
   } else if (question || questionArrowIcon) {
+    input.value = "";
     const index = event.target.dataset.index;
     content = popularQuestions[index].question;
-    console.log(content);
   }
   hideEmptyChatContent();
   const newMessage = new Message(content, "user");
   createMessges(newMessage, "user");
   showLoader();
+  if (isChatStarted) {
+    createAndSaveNewChatInIndexedDB(content);
+    chatHistoryHandler(newMessage);
+  }
   takeAiAnswer(newMessage);
 };
 window.addEventListener("DOMContentLoaded", createQuestions);

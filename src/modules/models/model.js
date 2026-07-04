@@ -31,7 +31,7 @@ const closeModelMenuOnUserClick = (event) => {
   const openModelMenu = event.target.closest(".current-model");
   const modelMenu = event.target.closest(".model-menu");
   const modelMenuItem = event.target.closest(".model-menu-items");
-  
+
   if (modelMenuItem || modelMenu) return;
   if (!openModelMenu) {
     hideModalMenu();
@@ -68,6 +68,18 @@ const removeActiveClassFromPreviousItem = () => {
 const saveCurrentModalInLocalStorage = (model) => {
   localStorage.setItem("model", model === "Fast" ? "fast" : "default");
 };
+
+const syncModelBasedOnLocalStorage = () => {
+  const localStorageModel = localStorage.getItem("model");
+  if (localStorageModel) {
+    const model = localStorageModel[0].toUpperCase() + localStorageModel.slice(1);
+    changeCurrentModelText(model);
+    removeActiveClassFromPreviousItem();
+    document.querySelector(`[data-model=${model}]`).classList.add("active");
+  }
+};
+
+window.addEventListener("DOMContentLoaded", syncModelBasedOnLocalStorage);
 currentModel.addEventListener("click", openModelMenu);
 document.addEventListener("click", closeModelMenuOnUserClick);
 modelMenuItems.forEach((item) => {
