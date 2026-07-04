@@ -1,14 +1,14 @@
 import "./style.css";
-import './modules/loader/loader'
-import applyTheme from "./modules/theme/theme";
-import "./modules/indexedDB/db";
-import "./modules/menu/menu";
-import "./modules/models/model";
-import "./modules/tips/tips";
-import "./modules/chat/emptyState";
-import "./modules/chat/createMessages";
-import "./modules/chat/createNewChat"
-import takeChatsHistoryFromIndexedDB from "./modules/chat/chatHistory";
+import './modules/loader/loader.js'
+import applyTheme from "./modules/theme/theme.js";
+import "./modules/indexedDB/db.js";
+import "./modules/menu/menu.js";
+import "./modules/models/model.js";
+import "./modules/tips/tips.js";
+import "./modules/chat/emptyState.js";
+import "./modules/chat/createMessages.js";
+import "./modules/chat/createNewChat.js"
+import takeChatsHistoryFromIndexedDB from "./modules/chat/chatHistory.js";
 
 takeChatsHistoryFromIndexedDB();
 applyTheme();

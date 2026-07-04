@@ -1,9 +1,9 @@
-import { createTransaction } from "../indexedDB/db";
-import Message from "../class/message";
-import Chat from "../class/chat";
-import sendMessage from "./response";
-import takeChatsHistoryFromIndexedDB from "./chatHistory";
-import renderAiMessage from "./renderAiMessage";
+import { createTransaction } from "../indexedDB/db.js";
+import Message from "../class/message.js";
+import Chat from "../class/chat.js";
+import sendMessage from "./response.js";
+import takeChatsHistoryFromIndexedDB from "./chatHistory.js";
+import renderAiMessage from "./renderAiMessage.js";
 import { marked } from "marked";
 
 const sendBtn = document.querySelector(".send-Btn");

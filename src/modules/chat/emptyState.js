@@ -5,8 +5,8 @@ import {
   takeAiAnswer,
   showLoader,
   chatHistoryHandler,
-} from "./createMessages";
-import Message from "../class/message";
+} from "./createMessages.js";
+import Message from "../class/message.js";
 const emptyChatContent = document.querySelector(".empty-chat");
 
 const popularQuestions = [
