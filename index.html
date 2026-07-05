@@ -11,7 +11,7 @@
     />
   </head>
   <body class="dark:bg-dark-bg bg-light-bg h-screen font-vazir">
-    <div class="max-sm:px-0 max-sm:py-0 h-full flex gap-2 px-4 py-3">
+    <div class="max-md:px-0 max-md:py-0 h-full flex gap-2 px-4 py-3">
       <div
         class="w-full h-full flex justify-center items-center dark:bg-dark-bg bg-light-bg fixed top-0 z-50 page-loader"
       >
@@ -24,7 +24,7 @@
       </div>
 
       <!-- mobile menu btn -->
-        <header class="hidden max-sm:flex [direction:ltr] left-3 z-30 top-4 fixed w-full h-10 mobile-header">
+        <header class="hidden max-md:block [direction:ltr] left-3 z-30 top-4 fixed w-full h-10 mobile-header">
             <button class="cursor-pointer flex justify-center items-center dark:bg-dark-card dark:border-dark-border bg-light-card shadow-light border border-light-border dark:text-dark-text-primary text-light-text-primary w-10 h-10 rounded-full  mobile-menu-opener">
                 <i class="fa-solid fa-bars-staggered text-xl"></i>              
             </button>
@@ -194,11 +194,11 @@
       </div>
 
       <!-- messages -->
-      <div class="w-[80%] max-xl:w-[65%] max-lg:w-full flex px-4 py-6 h-full dark:bg-dark-sidebar bg-light-sidebar rounded-2xl max-sm:rounded-none shadow-md">
+      <div class="w-[80%] max-md:w-full max-xl:w-[65%] max-lg:w-full flex px-4 py-6 h-full dark:bg-dark-sidebar bg-light-sidebar rounded-2xl max-md:rounded-none shadow-md">
         
         <div class="max-sm:px-1 max-xl:w-full relative max-sm:w-full pl-7 w-[80%] h-full rounded-tr-2xl rounded-br-2xl">
           <main class="h-full w-full mx-auto">
-            <div class="max-sm:justify-start max-sm:pt-20 flex w-full h-full flex-col justify-center items-center empty-chat">
+            <div class="max-sm:justify-start max-sm:pt-13 flex w-full h-full flex-col justify-center items-center empty-chat">
               <div>
                 <p class="text-xl font-bold text-center dark:text-dark-text-primary text-light-text-primary">
                   سلام 👋<br />چطور میتونم کمکت کنم؟
@@ -208,17 +208,18 @@
                     <i class="fa-solid fa-sparkles"></i>
                     سوالات پرطرفدار
                   </h3>
-                  <div class="flex w-full max-sm:px-0 max-2xl:px-0 px-35 flex-wrap gap-2 short-questions"></div>
+                  <div class="flex justify-center w-full max-sm:px-0 flex-wrap gap-2 short-questions"></div>
                 </div>
               </div>
             </div>
 
             <div class="max-sm:pt-10 hidden flex-col gap-2 pt-10 pb-25 w-full h-full overflow-auto messages-container">
 
+              
             </div>
           </main>
 
-          <footer class="max-sm:border-0 z-30 absolute mx-auto bottom-0 w-full">
+          <footer class="max-sm:border-0 z-30 absolute mx-auto bottom-7 w-full">
             <div class="flex max-sm:px-0 justify-center flex-col gap-2 mx-auto dark:bg-dark-sidebar bg-light-sidebar max-sm:w-full w-240 px-10">
               <div class="flex items-center justify-between w-full h-15 mx-auto dark:bg-dark-input-bg bg-light-input-bg rounded-2xl px-2 border border-light-input-border dark:border-dark-input-border">
                 <textarea

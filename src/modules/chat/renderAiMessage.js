@@ -1,7 +1,13 @@
 import { marked } from "marked";
-let currentText = "";
 const renderAiMessage = (content) => {
-  const aiMessageContainer = document.querySelector(".ai-message-text");
+  let currentText = "";
+  const aiMessageContainer = document.querySelectorAll(".ai-message-text");
+  console.log(aiMessageContainer.length);
+
+  const currentMessage =
+    aiMessageContainer.length === 1
+      ? aiMessageContainer[0]
+      : aiMessageContainer[aiMessageContainer.length - 1];
   let index = 0;
   const timer = setInterval(() => {
     currentText += content[index];
@@ -9,7 +15,7 @@ const renderAiMessage = (content) => {
     if (index === content.length) {
       clearInterval(timer);
     }
-    aiMessageContainer.innerHTML = marked.parse(currentText);
+    currentMessage.innerHTML = marked.parse(currentText);
   }, 30);
 };
 

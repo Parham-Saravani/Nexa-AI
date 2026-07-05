@@ -15,7 +15,7 @@ let currentChatId = null;
 
 const messageHandler = () => {
   const isChatStarted = emptyChatContent.classList.contains("flex");
-  const userText = input.value;
+  const userText = input.value.trim();
   const newMessage = new Message(userText, "user");
   createMessges(newMessage, "user");
   showLoader();
@@ -33,7 +33,7 @@ const messageHandler = () => {
 };
 const chatHistoryHandler = async (newMessage) => {
   const tx = await createTransaction("chats", "readwrite");
-  const store = tx.objectStore("chats");
+  const store = tx.objectStore("chats");  
   const currentChat = await takeCurrentChatFromIndexDB(store, currentChatId);
   addChatsToCurrentChat(currentChat, newMessage, store);
 };
@@ -54,28 +54,42 @@ const takeTitleFromUserInput = (userText) => {
   const chatTitle = userText.slice(0, 20);
   return `${chatTitle}...`;
 };
-const takeAiAnswer = async (newMessage) => {  
+const takeAiAnswer = async (newMessage) => {
   const response = await sendMessage(newMessage);
-  console.log(response);
-  
-  chatHistoryHandler(response);
-  const isEnglish = processIfAiTextIsEnglish(response);
-  hideLoader();
-  createMessges(response, "ai", isEnglish , true);
+  if (response === "Server-Error") {
+    createErrorUI()
+  } else {
+    chatHistoryHandler(response);
+    hideLoader();
+    createMessges(response, "ai", true);
+  }
 };
-
-const processIfAiTextIsEnglish = (response) => {
-  const englishRegEx = /[a-zA-Z]/;
-  const isEnglish = englishRegEx.test(response.content);
-  return isEnglish;
+const createErrorUI = () => {
+  messagesContainer.insertAdjacentHTML('beforeend',
+    `
+  <div class="animate-fadeIn relative dark:text-red-600 text-red-600 font-bold [direction:ltr] flex gap-2 items-center  ai-message">
+    <div class="[direction:rtl] max-sm:ml-0 ml-20 dark:bg-red-800/30 bg-red-600/20 max-sm:max-w-[95%] max-w-[70%] w-fit text-right rounded-2xl px-5 py-4">
+      <div class="flex items-center justify-center gap-6 text-[13px]">
+          <p>مشکلی پیش آمده لطفا مجدد تلاش کنید</p>
+          <button class="dark:bg-red-600/20 dark:text-red-600 text-white dark:hover:bg-red-600/50 bg-red-700 hover:bg-red-700/80 rounded-xl transition-colors duration-300 px-3 py-2 cursor-pointer">تلاش مجدد</button>
+      </div> 
+    </div>
+  </div>
+    `
+  )
+}
+const checkAiMessageIsPersian = (response) => {
+  const englishRegEx = /[\u0600-\u06FF]/;
+  const isPesian = englishRegEx.test(response.content);
+  return isPesian;
 };
-const createMessges = (response, role, isEnglish = false , typeEffect = false) => {
+const createMessges = ( response, role, typeEffect = false) => {
   if (role === "user") {
     messagesContainer.insertAdjacentHTML(
       "beforeend",
       `
     <div class="animate-fadeIn flex flex-col gap-3 dark:text-dark-text-primary text-light-text-primary max-sm:max-w-[90%] w-fit max-w-[50%] dark:text-shadow-light-text-primary text-shadow-light-text-primary dark:bg-dark-user-message bg-light-user-message rounded-2xl px-5 pt-5 pb-2 user-message">
-        <p class="break-all whitespace-pre-wrap">${response.content}</p>
+        <p class="break-all ${checkAiMessageIsPersian(response.content) ? 'text-right' : 'text-left'} whitespace-pre-wrap">${response.content}</p>
         <div class="w-full flex text-xs">
             <i class="fa-solid fa-check-double bgred"></i>
             <p class="[direction:ltr] w-19 flex justify-center items-center">${formatDate(response.createdAt)}</p>
@@ -83,8 +97,7 @@ const createMessges = (response, role, isEnglish = false , typeEffect = false) =
     </div>
     `,
     );
-  } else {
-    // ${processIfAiTextIsEnglish(response) ? "english-ai-message" : ""}
+  } else {    
     messagesContainer.insertAdjacentHTML(
       "beforeend",
       `
@@ -93,8 +106,8 @@ const createMessges = (response, role, isEnglish = false , typeEffect = false) =
                 <img class="size-11" src="./src/assets/images/sidebar-logo.png" alt="">
             </span>
             <div class="[direction:ltr] max-sm:ml-0 ml-20 dark:bg-dark-ai-message max-sm:max-w-[95%] max-w-[70%] w-fit text-right bg-light-ai-message rounded-2xl px-5 pt-5 pb-2">
-                <div class="ai-message-text ${processIfAiTextIsEnglish(response) ? "text-right" : "text-right"}">
-                    ${typeEffect ? '' : pareMarkDown(response.content)}
+                <div class="ai-message-text ${checkAiMessageIsPersian(response.content) ? "text-right" : "text-left"}">
+
                 </div>
                 <div class="mt-5 text-xs">
                     <p class="w-13 flex justify-center items-center">${formatDate(response.createdAt)}</p>
@@ -103,7 +116,7 @@ const createMessges = (response, role, isEnglish = false , typeEffect = false) =
         </div>
     `,
     );
-    if(typeEffect){
+    if (typeEffect) {
       renderAiMessage(response.content);
     }
   }
@@ -177,9 +190,8 @@ const addChatsToCurrentChat = (obj, newMessage, store) => {
   store.put(newChatToSave);
 };
 const pareMarkDown = (content) => {
-  return marked.parse(content)
-  
-}
+  return marked.parse(content);
+};
 input.addEventListener("input", inputHandler);
 sendBtn.addEventListener("click", messageHandler);
 
