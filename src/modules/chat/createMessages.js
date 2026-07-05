@@ -65,6 +65,7 @@ const takeAiAnswer = async (newMessage) => {
   }
 };
 const createErrorUI = () => {
+  hideLoader()
   messagesContainer.insertAdjacentHTML('beforeend',
     `
   <div class="animate-fadeIn relative dark:text-red-600 text-red-600 font-bold [direction:ltr] flex gap-2 items-center  ai-message">
@@ -89,7 +90,7 @@ const createMessges = ( response, role, typeEffect = false) => {
       "beforeend",
       `
     <div class="animate-fadeIn flex flex-col gap-3 dark:text-dark-text-primary text-light-text-primary max-sm:max-w-[90%] w-fit max-w-[50%] dark:text-shadow-light-text-primary text-shadow-light-text-primary dark:bg-dark-user-message bg-light-user-message rounded-2xl px-5 pt-5 pb-2 user-message">
-        <p class="break-all ${checkAiMessageIsPersian(response.content) ? 'text-right' : 'text-left'} whitespace-pre-wrap">${response.content}</p>
+        <p class="break-all text-right whitespace-pre-wrap max-sm:text-[13px]">${response.content}</p>
         <div class="w-full flex text-xs">
             <i class="fa-solid fa-check-double bgred"></i>
             <p class="[direction:ltr] w-19 flex justify-center items-center">${formatDate(response.createdAt)}</p>
@@ -106,7 +107,7 @@ const createMessges = ( response, role, typeEffect = false) => {
                 <img class="size-11" src="./src/assets/images/sidebar-logo.png" alt="">
             </span>
             <div class="[direction:ltr] max-sm:ml-0 ml-20 dark:bg-dark-ai-message max-sm:max-w-[95%] max-w-[70%] w-fit text-right bg-light-ai-message rounded-2xl px-5 pt-5 pb-2">
-                <div class="ai-message-text ${checkAiMessageIsPersian(response.content) ? "text-right" : "text-left"}">
+                <div class="ai-message-text text-right max-sm:text-[13px]">
 
                 </div>
                 <div class="mt-5 text-xs">

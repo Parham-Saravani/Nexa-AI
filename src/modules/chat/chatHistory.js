@@ -37,7 +37,7 @@ const createChastsHistory = (data) => {
         container.insertAdjacentHTML(
           "beforeend",
           `
-        <div class="ml-2 flex justify-between items-center rounded-2xl max-sm:py-3 py-4.5 px-3.5 dark:text-dark-text-secondary text-light-text-secondary transition-colors duration-300 dark:hover:bg-dark-bg hover:bg-light-bg cursor-pointer chat-history-items" data-id="${item.id}">
+        <div class="max-xl:text-xs ml-2 flex justify-between items-center rounded-2xl max-sm:py-3 py-4.5 px-3.5 dark:text-dark-text-secondary text-light-text-secondary transition-colors duration-300 dark:hover:bg-dark-bg hover:bg-light-bg cursor-pointer chat-history-items" data-id="${item.id}">
             <p class="font-medium line-clamp-1 max-sm:text-xs w-45 max-sm:w-33 chat-summary">${item.title}</p>
             <p class="[direction:ltr] text-xs max-sm:text-[9px]  chat-created-time">${formatDate(item.createAt)}</p>
         </div>
