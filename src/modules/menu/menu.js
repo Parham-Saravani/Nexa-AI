@@ -10,13 +10,26 @@ const activeClickedMenuItem = (event) => {
   event.target.classList.add("active");
 };
 const showModileMenu = () => {
-  mobileMenu.classList.remove('hide')
-}
+  mobileMenu.classList.remove("hide");
+};
 const hideMobileMenu = () => {
-  mobileMenu.classList.add('hide')
-}
+  mobileMenu.classList.add("hide");
+};
 menuItems.forEach((item) => {
   item.addEventListener("click", activeClickedMenuItem);
 });
-mobileMenuOpenBtn.addEventListener('click', showModileMenu)
-mobileMenuCloserBtn.addEventListener('click', hideMobileMenu)
+
+const closeMobileMenu = (event) => {
+  const { target } = event;
+  const menu = event.target.closest(".mobile-menu");
+  const menuOpener = event.target.closest(".mobile-menu-opener");
+
+  if (!menu && !menuOpener) {
+    hideMobileMenu();
+  } else if (menuOpener) {
+    showModileMenu();
+  }
+};
+mobileMenuOpenBtn.addEventListener("click", showModileMenu);
+mobileMenuCloserBtn.addEventListener("click", hideMobileMenu);
+document.addEventListener("click", closeMobileMenu);

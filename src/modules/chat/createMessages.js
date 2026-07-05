@@ -147,7 +147,7 @@ const showLoader = () => {
     `
     <div class="flex dark:text-dark-text-primary text-light-text-primary [direction:ltr] gap-6 items-center ai-message ai-message-loader">
       <span span class="flex items-center justify-center dark:bg-dark-bg bg-light-bg shadow-lg px-1 py-1 rounded-2xl">
-        <img class="size-11" src="./src/assets/images/sidebar-logo.png" alt="">
+        <img class="size-11" src="src/assets/images/sidebar-logo.png" alt="">
       </span>
       <div class="flex items-center gap-8 ml-5">
           <div class="loader aspect-square rounded-full w-2.5 animate-loader"></div>

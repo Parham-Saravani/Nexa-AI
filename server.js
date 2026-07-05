@@ -40,5 +40,5 @@ const fetchData = async (content, model) => {
 };
 
 app.listen(PORT, () => {
-  console.log("Listening On Port 1060");
+  console.log(`Listening On Port ${PORT}`);
 });
