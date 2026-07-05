@@ -54,10 +54,10 @@ const takeTitleFromUserInput = (userText) => {
   const chatTitle = userText.slice(0, 20);
   return `${chatTitle}...`;
 };
-const takeAiAnswer = async (newMessage) => {
-  console.log(newMessage);
-  
+const takeAiAnswer = async (newMessage) => {  
   const response = await sendMessage(newMessage);
+  console.log(response);
+  
   chatHistoryHandler(response);
   const isEnglish = processIfAiTextIsEnglish(response);
   hideLoader();

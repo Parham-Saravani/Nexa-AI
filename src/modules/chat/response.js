@@ -1,9 +1,7 @@
 import Message from "../class/message.js";
-const baseUrl = "http://localhost:1060";
+const baseUrl = "https://nexa-ai-3-fpa0.onrender.com";
 
 const sendMessage = async (obj) => {
-  console.log(obj);
-
   const response = await fetch(`${baseUrl}/api/chat`, {
     method: "POST",
     headers: {
@@ -11,6 +9,8 @@ const sendMessage = async (obj) => {
     },
     body: JSON.stringify(obj),
   });
+  console.log(response);
+  
   const data = await response.json();
   return new Message(data.choices[0].message.content, "ai");
 };

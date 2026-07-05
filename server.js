@@ -1,5 +1,7 @@
 import express, { json } from "express";
 import cors from "cors";
+
+const PORT = process.env.PORT || 1060;
 const app = express();
 const baseUrl = "https://api.llm7.io/v1/chat/completions";
 const apiKey =
@@ -16,7 +18,7 @@ app.post("/api/chat", async (req, res) => {
 
 const fetchData = async (content, model) => {
   console.log(model);
-  
+
   const response = await fetch(baseUrl, {
     method: "POST",
     headers: {
@@ -37,6 +39,6 @@ const fetchData = async (content, model) => {
   return data;
 };
 
-app.listen(1060, () => {
+app.listen(PORT, () => {
   console.log("Listening On Port 1060");
 });
