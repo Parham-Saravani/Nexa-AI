@@ -27,13 +27,16 @@ Nexa AI provides a ChatGPT-like experience with persistent chat history, Markdow
 ---
 ## 🖼️ Preview
 
-### Chat Interface
 
 (Add screenshot here)
 
-### Mobile View
+![darkDesktop](./Images/lightDesktop.png)
+![darkDesktop](./Images/darkDesktop.png)
 
 (Add screenshot here)
+
+![darkDesktop](./Images/lightMobile.png)
+![darkDesktop](./Images/darkMobile.png)
 
 ---
 
