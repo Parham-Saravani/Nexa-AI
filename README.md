@@ -6,6 +6,12 @@ Nexa AI provides a ChatGPT-like experience with persistent chat history, Markdow
 
 ---
 
+## 🌐 Live Demo
+
+🔗 https://nexa-ai-alpha-drab.vercel.app/
+
+---
+
 ## 🛠️ Tech Stack
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
