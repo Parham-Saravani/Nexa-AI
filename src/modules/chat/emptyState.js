@@ -44,10 +44,10 @@ const createQuestions = () => {
     questionContainer.insertAdjacentHTML(
       "beforeend",
       `
-        <div class="dark:bg-dark-input-bg max-xl:w-120 max-md:w-71 max-sm:w-full w-105 border border-light-input-border dark:border-dark-input-border max-xl:py-4 max-sm:py-3 px-3 py-6 dark:text-dark-text-secondary text-light-text-secondary flex justify-between items-center rounded-2xl transition-transform duration-300 hover:scale-101 popular-questions">
+        <div class="dark:bg-dark-input-bg max-2xl:w-100 max-xl:w-120 max-lg:w-90 max-md:w-71 max-sm:w-full w-105 border border-light-input-border dark:border-dark-input-border max-2xl:py-3 max-xl:py-4 max-sm:py-3 px-3 py-6 dark:text-dark-text-secondary text-light-text-secondary flex justify-between items-center rounded-2xl transition-transform duration-300 hover:scale-101 popular-questions">
             <div class="flex w-[90%] items-center gap-3">
                 <i class="${question.icon}"></i>
-                <p class="text-[13px] max-xl:text-[15px] max-md:text-[10px] popular-question-text cursor-pointer" data-index="${index}">${question.question}</p>
+                <p class="text-[13px] max-xl:text-[15px] max-lg:text-xs max-md:text-[10px] popular-question-text cursor-pointer" data-index="${index}">${question.question}</p>
             </div>
             <i class="fa-solid fa-arrow-left cursor-pointer question-arrow-icon" data-index="${index}"></i>
         </div>

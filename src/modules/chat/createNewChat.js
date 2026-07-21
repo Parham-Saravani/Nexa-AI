@@ -1,4 +1,4 @@
-const newChatBtn = document.querySelector(".new-chat");
+const newChatBtn = document.querySelectorAll(".new-chat");
 const emptyChatContent = document.querySelector(".empty-chat");
 const messagesContainer = document.querySelector(".messages-container");
 
@@ -16,4 +16,6 @@ const createNewChat = () => {
   }
 };
 
-newChatBtn.addEventListener("click", createNewChat);
+newChatBtn.forEach(btn => {
+  btn.addEventListener("click", createNewChat);
+})
