@@ -70,7 +70,7 @@ const createErrorUI = () => {
   messagesContainer.insertAdjacentHTML('beforeend',
     `
   <div class="animate-fadeIn relative dark:text-red-600 text-red-600 font-bold [direction:ltr] flex gap-2 items-center  ai-message">
-    <div class="[direction:rtl] max-sm:ml-0 ml-20 dark:bg-red-800/30 bg-red-600/20 max-sm:max-w-[95%] max-w-[70%] w-fit text-right rounded-2xl px-5 py-4">
+    <div class="[direction:rtl] dark:bg-red-800/30 bg-red-600/20 max-sm:max-w-[95%] max-w-[70%] w-fit text-right rounded-2xl px-5 py-4">
       <div class="flex items-center justify-center gap-6 text-[13px]">
           <p>مشکلی پیش آمده لطفا مجدد تلاش کنید</p>
           <button class="dark:bg-red-600/20 dark:text-red-600 text-white dark:hover:bg-red-600/50 bg-red-700 hover:bg-red-700/80 rounded-xl transition-colors duration-300 px-3 py-2 cursor-pointer">تلاش مجدد</button>
