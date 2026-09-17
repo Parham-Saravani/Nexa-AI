@@ -29,13 +29,9 @@ Nexa AI provides a ChatGPT-like experience with persistent chat history, Markdow
 
 ### Desktop View
 
-![darkDesktop](./Images/lightDesktop.png)
-
-![darkDesktop](./Images/darkDesktop.png)
-
-### Mobile View
-![darkDesktop](./Images/lightMobile.png)
-![darkDesktop](./Images/darkMobile.png)
+ ![darkDesktop](./Images/lightDesktop.png) 
+ 
+ ![darkDesktop](./Images/darkDesktop.png) 
 
 ---
 
@@ -97,14 +93,3 @@ During development, several core frontend concepts were implemented:
 * Event delegation
 * Modular JavaScript architecture
 * Responsive UI design
-
----
-
-## 🔮 Future Improvements
-
-* Message editing
-* Chat deletion
-* Export conversations
-* User authentication
-* Cloud synchronization
-* Multiple AI model support
